@@ -84,7 +84,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Disable CSRF (Cross-Site Request Forgery) for Postman/APIs
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(org.springframework.http.HttpMethod.POST, "/users").permitAll()
-                        .anyRequest().authenticated() // "All requests require a password"
+                        // Allow anyone to see the Swagger Documentation
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll() // <--- ADD THIS LINE!.anyRequest().authenticated() // "All requests require a password"
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults()); // Use Basic Auth (What Postman uses)
 
