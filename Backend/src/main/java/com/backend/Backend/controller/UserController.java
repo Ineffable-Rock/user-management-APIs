@@ -18,7 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // --- METHODS USING DTOs (Secure) ---
 
     // 1. Get All Users
     // Returns List<UserDTO> instead of List<User>
@@ -35,7 +34,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-    // --- METHODS STILL USING ENTITIES (To be updated later) ---
     // These match the current state of your UserService
 
     @GetMapping("/{id}")
@@ -63,4 +61,5 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }
